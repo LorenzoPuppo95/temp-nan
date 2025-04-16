@@ -14,6 +14,10 @@ describe('MainpageComponent', () => {
 
     fixture = TestBed.createComponent(MainpageComponent);
     component = fixture.componentInstance;
+    component.tempMean = 0;
+    component.maxTempTime = {time: '', temp: 0};
+    component.minTempTime = {time: '', temp: 0};
+    component.tempArray = [ { time: '2023-10-01T00:00:00Z', temp: 0 } ];
     fixture.detectChanges();
   });
 

@@ -11,7 +11,7 @@ export class ProcessingService {
   getTempArrayFromHourlyData(hourly: any): TempTime[] {
     let tempArray: TempTime[] = [];
     const hourlyArray = Object.values(hourly);
-    for (let i = 0; i< (hourlyArray[0] as string[]).length; i++){
+    for (let i = 0; i < (hourlyArray[0] as string[]).length; i++){
       const time = (hourlyArray[0] as string[])[i];
       const temp = this.fromFtoC((hourlyArray[1] as number[])[i]);
       tempArray.push({
@@ -49,7 +49,7 @@ export class ProcessingService {
 
   fromFtoC(f: number): number{
     let tempC = (f - 32) / (9/5);
-    tempC = Math.round(tempC * 100) / 100;
+    tempC = Math.round(tempC * 10) / 10;
     return tempC;
   }
 }
