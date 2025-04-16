@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Temp NaN</h1>
+    <div class="row">
+        <div>
+            <p>
+                First Temp received: {{ tempArray[0].time }} , {{ tempArray[0].temp }} °C <br>
+            </p>
+        </div> 
+        <div>
+            <p>
+                Last Temp received: {{ tempArray[(tempArray.length)-1].time }} , {{ tempArray[(tempArray.length)-1].temp }} °C <br>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <p>Lowest Temp: {{ minTempTime.temp }} °C </p>
+        </div> 
+        <div>
+            <p>Mean Temp: {{ tempMean }} °C </p>
+        </div>
+        <div>
+            <p>Highest Temp: {{ maxTempTime.temp }} °C </p>
+        </div>
+    </div>
+</div>

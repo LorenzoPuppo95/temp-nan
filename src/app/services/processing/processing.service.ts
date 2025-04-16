@@ -6,25 +6,50 @@ import { TempTime } from '../../model/temp-time';
 })
 export class ProcessingService {
 
-
   constructor() { }
 
   getTempArrayFromHourlyData(hourly: any): TempTime[] {
-    return []
+    let tempArray: TempTime[] = [];
+    const hourlyArray = Object.values(hourly);
+    for (let i = 0; i< (hourlyArray[0] as string[]).length; i++){
+      const time = (hourlyArray[0] as string[])[i];
+      const temp = this.fromFtoC((hourlyArray[1] as number[])[i]);
+      tempArray.push({
+        time: time,
+        temp: temp
+      });
+    }
+    return tempArray;
   }
 
   getMinTemp(tempArray: TempTime[]): TempTime {
-    throw new Error('Method not implemented.');
+    if (tempArray.length === 0) {
+      throw new Error('tempArray is empty');
+    }
+    const minTempObj = tempArray.reduce((min, current) => {
+      return current.temp < min.temp ? current : min;
+    });
+    return minTempObj;
   }
   getTempMean(tempArray: TempTime[]): number {
-    throw new Error('Method not implemented.');
+    const temps = tempArray.map(item => item.temp);
+    const sum = temps.reduce((acc, curr) => acc + curr, 0);
+    const mean = sum / temps.length;
+    return Math.round(mean * 100) / 100;;
   }
   getMaxTemp(tempArray: TempTime[]): TempTime {
-    throw new Error('Method not implemented.');
+    if (tempArray.length === 0) {
+      throw new Error('tempArray is empty');
+    }
+    const maxTempObj = tempArray.reduce((max, current) => {
+      return current.temp > max.temp ? current : max;
+    });
+    return maxTempObj;
   }
 
   fromFtoC(f: number): number{
-    return -1;
+    let tempC = (f - 32) / (9/5);
+    tempC = Math.round(tempC * 100) / 100;
+    return tempC;
   }
-
 }
